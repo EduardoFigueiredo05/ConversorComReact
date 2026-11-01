@@ -1,0 +1,73 @@
+@import 'tailwindcss';
+
+/* Tokens extraídos do protótipo (tema escuro navy + verde esmeralda) */
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-page: #0b1120;
+  --color-bar: #0e1627;
+  --color-card: #131c2e;
+  --color-panel: #1a2438;
+  --color-field: #0b1322;
+  --color-line: #243049;
+
+  --color-ink: #e6ebf5;
+  --color-muted: #9aa6bd;
+  --color-faint: #6b778f;
+
+  --color-up: #34d399;
+  --color-up-strong: #10b981;
+  --color-up-soft: #0f2e2a;
+  --color-down: #f87171;
+  --color-down-soft: #3a1c22;
+  --color-accent: #2563eb;
+  --color-ma: #a5b4fc;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-page text-ink font-sans antialiased;
+    min-width: 320px;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-up);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #1a2438 25%, #243049 50%, #1a2438 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  border-radius: 6px;
+}
